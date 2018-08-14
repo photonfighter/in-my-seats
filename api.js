@@ -22,4 +22,4 @@ function listHouseMembers(){
   });
 }
 
-console.log(listSenateMembers());
+listSenateMembers();
