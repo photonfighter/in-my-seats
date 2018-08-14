@@ -21,5 +21,3 @@ function listHouseMembers(){
     console.log(myJson);
   });
 }
-
-listSenateMembers();
