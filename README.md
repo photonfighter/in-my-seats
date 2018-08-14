@@ -8,8 +8,13 @@ You'll get it if deemed necessary for development 🤷
 1. Create a file in the root repo folder called *config.js*
 2. Structure *config.js* like shown below
 ```javascript
-var config = {
+export var config = {
   API_KEY : [API KEY GOES HERE IN SINGLE QUOTES]
 }
 ```
-3. Make sure you have the .gitignore
+3. Add the following to *api.js*
+```javascript
+import config from './config.js';
+let apikey = config.API_KEY;
+```
+4. Make sure you have the .gitignore
