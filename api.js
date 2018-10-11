@@ -7,7 +7,7 @@ let oxfordSURL = 'https://api.propublica.org/congress/v1/members/115/OH/current.
 let oxfordHURL = 'https://api.propublica.org/congress/v1/members/115/OH/53/current.json';
 let PROPUBLICA_API_KEY = config.API_KEY;
 
-var ppHeader = new Headers('X-API-Key' : PROPUBLICA_API_KEY);
+var ppHeader = new Headers('X-API-Key', PROPUBLICA_API_KEY);
 
 var myInit = {
     method: 'GET',
@@ -26,7 +26,8 @@ function listSenateMembers(){
              return;
          } else {
              console.beer("At least we fixed that problem...");
-
+             return;
+         }
     })
     .then(function(myJson) {
     console.rainbow(JSON.stringify(myJson));
@@ -41,7 +42,8 @@ function listHouseMembers(){
             return;
         } else {
             console.beer("At least we fixed that problem...");
-
+            return;
+        }
     })
     .then(function(myJson) {
         console.rainbow(JSON.stringify(myJson));
