@@ -8,13 +8,17 @@ You'll get it if deemed necessary for development 🤷
 1. Create a file in the root repo folder called *config.js*
 2. Structure *config.js* like shown below
 ```javascript
-export var config = {
-  API_KEY : [API KEY GOES HERE IN SINGLE QUOTES]
+var config = {
+  API_KEY : 'API KEY GOES HERE'
 }
+
+module.exports = config;
 ```
 3. Add the following to *api.js*
 ```javascript
-import config from './config.js';
-let apikey = config.API_KEY;
+const config = require('./config.js');
+const PROPUBLICA_API_KEY = config.API_KEY;
 ```
 4. Make sure you have the .gitignore
+
+If you expose the API key, you'll be banned from contributing to the project
