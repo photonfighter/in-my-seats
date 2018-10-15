@@ -60,4 +60,4 @@ function addressForURL(address) {
     return address;
 }
 
-listSenateMembers("8112 High Oaks Dr. Lambertville MI");
+listSenateMembers("");
