@@ -3,51 +3,37 @@
 */
 
 import 'isomorphic-fetch'
+import './../console-dot-emoji/console.emoji.js'
 
 const config = require('./config.js');
 const PROPUBLICA_API_KEY = config.publica_KEY;
 const GOOGLE_API_KEY = config.google_KEY;
-var sURL = '';
-var hURL = '';
-var dist = 0;
 const publicaHead = new Headers({
     'x-api-key': PROPUBLICA_API_KEY
 });
 const publicaInit = {headers: publicaHead};
 
-function senateURL(address) {
-    var stateTwo = getInfoGoogle(address);
-    sURL = 'https://api.propublica.org/congress/v1/members/senate/' + stateTwo + '/current.json';
-    console.log(sURL);
-}
-
-function houseURL(address) {
-    sURL = 'https://api.propublica.org/congress/v1/members/house/' + /* 2 letter state code */ + /* district number */ + '/current.json';
-}
-
-function getInfoGoogle(address) {
-    address = addressForURL(address);
-    var googURL = 'https://www.googleapis.com/civicinfo/v2/voterinfo?key=' + GOOGLE_API_KEY + '&address=' + address;
-    fetch(googURL)
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(data){
-         return setState(data);
-      });
-}
-
 function listSenateMembers(address) {
-    fetch(senateURL(address), publicaInit)
+    address = addressForURL(address);
+    let state = getStateGoogle(address);
+    console.dog(state);
+    console.cat(address);
+
+    // setting up ProPublica Senate URL
+    let sURL = 'https://api.propublica.org/congress/v1/members/senate/' + state + '/current.json';
+
+    // Accessing ProPublica Congress API
+    /*fetch(sURL, publicaInit)
       .then(function(response) {
         return response.json();
       })
       .then(function(myJson) {
         console.log(JSON.stringify(myJson));
-      });
+    });*/
 }
 
 function listHouseMembers(address) {
+    let hURL = 'https://api.propublica.org/congress/v1/members/house/' + /* 2 letter state code */ + /* district number */ + '/current.json';
     fetch(hURL, publicaInit)
       .then(function(response) {
         return response.json();
@@ -57,13 +43,21 @@ function listHouseMembers(address) {
       });
 }
 
+function getStateGoogle(address) {
+    var googURL = 'https://www.googleapis.com/civicinfo/v2/voterinfo?key=' + GOOGLE_API_KEY + '&address=' + address;
+    fetch(googURL)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(myJson){
+        let state = JSON.stringify(myJson.normalizedInput.state);
+        return state;
+      });
+}
+
 function addressForURL(address) {
     address = address.split(' ').join('%20');
     return address;
 }
 
-function setState(data) {
-    return data.normalizedInput.state;
-}
-
-senateURL("8112 High Oaks Dr. Lambertville MI");
+listSenateMembers("8112 High Oaks Dr. Lambertville MI");
