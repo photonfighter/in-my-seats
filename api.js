@@ -1,5 +1,5 @@
 /*
-    Address must be structured like "1234 Peaceful Ln. Cleveland OH"
+    Addresses must be structured like "1234 Peaceful Ln. Cleveland OH"
 */
 
 import 'isomorphic-fetch'
