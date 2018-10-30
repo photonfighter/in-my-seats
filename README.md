@@ -1,4 +1,4 @@
-# In My Seat (TITLE SUBJECT TO CHANGE)
+# In My Seats
 An Alexa Skill that tells you which House and Senate members represent you + some information about them
 
 # API Key
@@ -9,7 +9,7 @@ You'll get it if deemed necessary for development 🤷
 2. Structure *config.js* like shown below
 ```javascript
 var config = {
-  API_KEY : 'API KEY GOES HERE'
+  API_KEY : [API KEY GOES HERE IN SINGLE QUOTES]
 }
 
 module.exports = config;
