@@ -1,0 +1,28 @@
+{
+	"interactionModel": {
+		"languageModel": {
+			"invocationName": "in my seats",
+			"types": [],
+			"intents": [
+				{
+					"name": "GetCountryAndPostalCodeIntent",
+					"samples": [
+						"get my zip"
+					]
+				},
+				{
+					"name": "AMAZON.CancelIntent",
+					"samples": []
+				},
+				{
+					"name": "AMAZON.HelpIntent",
+					"samples": []
+				},
+				{
+					"name": "AMAZON.StopIntent",
+					"samples": []
+				}
+			]
+		}
+	}
+}

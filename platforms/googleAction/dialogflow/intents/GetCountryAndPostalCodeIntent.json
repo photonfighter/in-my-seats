@@ -1,0 +1,5 @@
+{
+	"name": "GetCountryAndPostalCodeIntent",
+	"auto": true,
+	"webhookUsed": true
+}
