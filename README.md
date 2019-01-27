@@ -12,8 +12,4 @@ module.exports = {
   "CivicInfoAPIKey" : "Your API key here",
 }
 ```
-3. Add the following to *api.js*
-```javascript
-const config = require('./apiconfig.js');
-```
-4. Make sure to include *apiconfig.js* in your .gitignore!!!
+3. Make sure to include *apiconfig.js* in your .gitignore!!!
