@@ -1,24 +1,19 @@
-# In My Seats
-An Alexa Skill that tells you which House and Senate members represent you + some information about them
+# In My Seats (Jovo Edition)
+An Alexa Skill made with Jovo that tells you which House and Senate members represent you + some information about them
 
 # API Key
-You'll get it if deemed necessary for development 🤷
+You'll need to get an API key for Google's Civic Info API.
 
 ### What to do with API Key
-1. Create a file in the root repo folder called *config.js*
-2. Structure *config.js* like shown below
+1. Create a file in /src called *apiconfig.js*
+2. Structure *apiconfig.js* like shown below
 ```javascript
-var config = {
-  API_KEY : [API KEY GOES HERE IN SINGLE QUOTES]
+module.exports = {
+  "CivicInfoAPIKey" : "Your API key here",
 }
-
-module.exports = config;
 ```
 3. Add the following to *api.js*
 ```javascript
-const config = require('./config.js');
-const PROPUBLICA_API_KEY = config.API_KEY;
+const config = require('./apiconfig.js');
 ```
-4. Make sure you have the .gitignore
-
-If you expose the API key, you'll be banned from contributing to the project
+4. Make sure to include *apiconfig.js* in your .gitignore!!!
