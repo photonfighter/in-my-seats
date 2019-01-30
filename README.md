@@ -1,5 +1,5 @@
 # In My Seats (Jovo Edition)
-An Alexa Skill made with Jovo that tells you which House and Senate members represent you + some information about them
+An Alexa Skill and Google Home Action made with Jovo that tells you information about the President, your Senators, your House Representative, and your Governor.
 
 # API Key
 You'll need to get an API key for Google's Civic Info API.
