@@ -55,7 +55,9 @@ app.setHandler({
       },
       // give info on Senators
       SenatorsIntent() {
-
+        let name = jsonparser.officials.senatorOne.name;
+        let name2 = jsonparser.officials.senatorTwo.name;
+        this.followUpState('SenatorOption').ask('Your senators are ' + name + ' and ' + name2 + '. To hear the info for ' + name + ', say senator one. To hear the info for ' + name2 + ', say senator two.');
       },
       // give info on House Rep
       HouseIntent() {
@@ -65,7 +67,26 @@ app.setHandler({
         let party = jsonparser.officials.houseRep.party;
         this.tell('The House Representative is ' + name + ". They are a member of the " + party + ". Their address is " + address + ". Their phone number is " + phone);
       }
-    }
+    },
+
+    SenatorOption: {
+      // give info for the first listed Senator
+      S1Intent() {
+        let name = jsonparser.officials.senatorOne.name;
+        let address = jsonparser.officials.senatorOne.address;
+        let phone = jsonparser.officials.senatorOne.phone;
+        let party = jsonparser.officials.senatorOne.party;
+        this.tell(name + " is a member of the " + party + ". Their address is " + address + ". Their phone number is " + phone);
+      },
+      // give info for the second listed Senator
+      S2Intent() {
+        let name = jsonparser.officials.senatorTwo.name;
+        let address = jsonparser.officials.senatorTwo.address;
+        let phone = jsonparser.officials.senatorTwo.phone;
+        let party = jsonparser.officials.senatorTwo.party;
+        this.tell(name + " is a member of the " + party + ". Their address is " + address + ". Their phone number is " + phone);
+      }
+    },
 
     async PermissionsErrorIntent() {
       await this.$alexaSkill.$user.showAskForCountryAndPostalCodeCard();
