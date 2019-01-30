@@ -44,10 +44,10 @@ app.setHandler({
       this.ask("Which would you like me to look up for you?");
     },
 
-    PermissionsErrorIntent() {
+    async PermissionsErrorIntent() {
       await this.$alexaSkill.$user.showAskForCountryAndPostalCodeCard();
       this.tell("You done goofed. Get permission");
-    },
+  },
 
     async GetCountryAndPostalCodeIntent() {
 
