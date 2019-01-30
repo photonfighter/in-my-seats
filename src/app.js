@@ -12,6 +12,7 @@ const { FileDb } = require('jovo-db-filedb');
 
 const apiConfig = require('./apiconfig.js');
 const request = require('request-promise-native');
+const jsonparser = require('./json-parser.js');
 
 
 const app = new App();
@@ -33,8 +34,19 @@ app.use(
 app.setHandler({
      LAUNCH() {
 
+       this.tell("Hello! I am here to help you get to know your representatives. You can choose between president, senators, house representative, or governor.");
+
       return this.toIntent('GetCountryAndPostalCodeIntent');
 
+    },
+
+    GetDesiredRepresentativeIntent() {
+      this.ask("Which would you like me to look up for you?");
+    },
+
+    PermissionsErrorIntent() {
+      await this.$alexaSkill.$user.showAskForCountryAndPostalCodeCard();
+      this.tell("You done goofed. Get permission");
     },
 
     async GetCountryAndPostalCodeIntent() {
@@ -60,15 +72,13 @@ app.setHandler({
         // it makes sure that the asynchronous function request() finishes before storing its response.
         var response = await request(requestOptions);
 
-        // Just an example of what can be done.
-        // Eventually we'll just take the data we need and store it in our own representatives object.
-        this.tell(response.offices[0].name);
+        var officials = jsonparser.parse(response);
+
 
       } catch(error) {
         // Only show the permission card if needed.
         if (error.code === 'NO_USER_PERMISSION') {
-          await this.$alexaSkill.$user.showAskForCountryAndPostalCodeCard();
-          this.tell("You done goofed. Get permission");
+          this.toIntent('PermissionsErrorIntent');
         } else {
           // ????????????????????????????
           // This theoretically shouldn't happen
