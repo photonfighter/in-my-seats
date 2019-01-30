@@ -5,6 +5,78 @@
 			"name": "GetCountryAndPostalCodeIntent",
 			"phrases": [
 				"get my zip"
+			],
+			"inputs": []
+		},
+		{
+			"name": "GetDesiredRepresentativeIntent",
+			"phrases": [],
+			"inputs": [
+				{
+					"name": "representative",
+					"type": "representatives"
+				}
+			]
+		},
+		{
+			"name": "PresidentIntent",
+			"phrases": [],
+			"inputs": []
+		},
+		{
+			"name": "SenatorsIntent",
+			"phrases": [],
+			"inputs": []
+		},
+		{
+			"name": "HouseIntent",
+			"phrases": [],
+			"inputs": []
+		},
+		{
+			"name": "GovernorIntent",
+			"phrases": [],
+			"inputs": []
+		},
+		{
+			"name": "SenatorOneIntent",
+			"phrases": [],
+			"inputs": []
+		},
+		{
+			"name": "SenatorTwoIntent",
+			"phrases": [],
+			"inputs": []
+		},
+		{
+			"name": "PermissionsErrorIntent",
+			"phrases": [],
+			"inputs": []
+		}
+	],
+	"inputTypes": [
+		{
+			"name": "representatives",
+			"values": [
+				{
+					"value": "governor"
+				},
+				{
+					"value": "house representative",
+					"synonyms": [
+						"representative",
+						"house rep"
+					]
+				},
+				{
+					"value": "senators",
+					"synonyms": [
+						"senator"
+					]
+				},
+				{
+					"value": "president"
+				}
 			]
 		}
 	],
@@ -23,29 +95,13 @@
 					{
 						"name": "AMAZON.StopIntent",
 						"samples": []
+					},
+					{
+						"name": "AMAZON.NavigateHomeIntent",
+						"samples": []
 					}
 				]
 			}
 		}
-	},
-	"dialogflow": {
-		"intents": [
-			{
-				"name": "Default Fallback Intent",
-				"auto": true,
-				"webhookUsed": true,
-				"fallbackIntent": true
-			},
-			{
-				"name": "Default Welcome Intent",
-				"auto": true,
-				"webhookUsed": true,
-				"events": [
-					{
-						"name": "WELCOME"
-					}
-				]
-			}
-		]
 	}
 }

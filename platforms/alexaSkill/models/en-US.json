@@ -1,28 +1,111 @@
 {
-	"interactionModel": {
-		"languageModel": {
-			"invocationName": "in my seats",
-			"types": [],
-			"intents": [
-				{
-					"name": "GetCountryAndPostalCodeIntent",
-					"samples": [
-						"get my zip"
-					]
-				},
-				{
-					"name": "AMAZON.CancelIntent",
-					"samples": []
-				},
-				{
-					"name": "AMAZON.HelpIntent",
-					"samples": []
-				},
-				{
-					"name": "AMAZON.StopIntent",
-					"samples": []
-				}
-			]
-		}
-	}
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "in my seats",
+      "intents": [
+        {
+          "name": "GetCountryAndPostalCodeIntent",
+          "slots": [],
+          "samples": [
+            "get my zip"
+          ]
+        },
+        {
+          "name": "GetDesiredRepresentativeIntent",
+          "slots": [
+            {
+              "name": "representative",
+              "type": "representatives"
+            }
+          ],
+          "samples": []
+        },
+        {
+          "name": "PresidentIntent",
+          "slots": [],
+          "samples": []
+        },
+        {
+          "name": "SenatorsIntent",
+          "slots": [],
+          "samples": []
+        },
+        {
+          "name": "HouseIntent",
+          "slots": [],
+          "samples": []
+        },
+        {
+          "name": "GovernorIntent",
+          "slots": [],
+          "samples": []
+        },
+        {
+          "name": "SenatorOneIntent",
+          "slots": [],
+          "samples": []
+        },
+        {
+          "name": "SenatorTwoIntent",
+          "slots": [],
+          "samples": []
+        },
+        {
+          "name": "PermissionsErrorIntent",
+          "slots": [],
+          "samples": []
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "governor"
+              }
+            },
+            {
+              "name": {
+                "value": "house representative",
+                "synonyms": [
+                  "representative",
+                  "house rep"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "senators",
+                "synonyms": [
+                  "senator"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "president"
+              }
+            }
+          ],
+          "name": "representatives"
+        }
+      ]
+    }
+  }
 }
