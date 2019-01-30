@@ -41,13 +41,13 @@ app.setHandler({
     },
 
     GetDesiredRepresentativeIntent() {
-      this.ask("Which would you like me to look up for you?");
+      this.ask("Which would you like me to look up for you?", "Which representative would you like to know more about?");
     },
 
     async PermissionsErrorIntent() {
       await this.$alexaSkill.$user.showAskForCountryAndPostalCodeCard();
       this.tell("You done goofed. Get permission");
-  },
+    },
 
     async GetCountryAndPostalCodeIntent() {
 
