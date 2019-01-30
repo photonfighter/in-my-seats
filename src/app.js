@@ -34,9 +34,8 @@ app.use(
 app.setHandler({
      LAUNCH() {
 
-       this.tell("Hello! I am here to help you get to know your representatives. You can choose between president, senators, house representative, or governor.");
-
-      return this.toIntent('GetCountryAndPostalCodeIntent');
+       this.tell("Hello! I'm here to help you get to know your representatives. You can choose between president, senators, house representative, or governor.");
+       this.toIntent('GetCountryAndPostalCodeIntent');
 
     },
 
@@ -66,7 +65,16 @@ app.setHandler({
         let phone = jsonparser.officials.houseRep.phone;
         let party = jsonparser.officials.houseRep.party;
         this.tell('The House Representative is ' + name + ". They are a member of the " + party + ". Their address is " + address + ". Their phone number is " + phone);
+      },
+      // give info on Governor
+      HouseIntent() {
+        let name = jsonparser.officials.governor.name;
+        let address = jsonparser.officials.governor.address;
+        let phone = jsonparser.officials.governor.phone;
+        let party = jsonparser.officials.governor.party;
+        this.tell('The governor is ' + name + ". They are a member of the " + party + ". Their address is " + address + ". Their phone number is " + phone);
       }
+
     },
 
     SenatorOption: {
@@ -131,6 +139,8 @@ app.setHandler({
 
         }
       }
+
+      this.toIntent('GetDesiredRepresentativeIntent');
     },
 });
 
