@@ -41,8 +41,31 @@ app.setHandler({
     },
 
     GetDesiredRepresentativeIntent() {
-      this.ask("Which would you like me to look up for you?", "Which representative would you like to know more about?");
+      this.followUpState('RepOption').ask("Which would you like me to look up for you?", "Which representative would you like to know more about?");
     },
+
+    RepOption: {
+      // give info on President
+      PresidentIntent() {
+        let name = jsonparser.officials.president.name;
+        let address = jsonparser.officials.president.address;
+        let phone = jsonparser.officials.president.phone;
+        let party = jsonparser.officials.president.party;
+        this.tell('The president is ' + name + ". They are a member of the " + party + ". Their address is " + address + ". Their phone number is " + phone);
+      },
+      // give info on Senators
+      SenatorsIntent() {
+
+      },
+      // give info on House Rep
+      HouseIntent() {
+        let name = jsonparser.officials.houseRep.name;
+        let address = jsonparser.officials.houseRep.address;
+        let phone = jsonparser.officials.houseRep.phone;
+        let party = jsonparser.officials.houseRep.party;
+        this.tell('The House Representative is ' + name + ". They are a member of the " + party + ". Their address is " + address + ". Their phone number is " + phone);
+      }
+    }
 
     async PermissionsErrorIntent() {
       await this.$alexaSkill.$user.showAskForCountryAndPostalCodeCard();
