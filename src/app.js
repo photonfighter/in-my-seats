@@ -34,9 +34,9 @@ app.use(
 app.setHandler({
      LAUNCH() {
 
-       this.tell("Hello! I am here to help you get to know your representatives. You can choose between president, senators, house representative, or governor.");
+      this.tell("Hello! I am here to help you get to know your representatives. You can choose between president, senators, house representative, or governor.");
 
-      return this.toIntent('GetCountryAndPostalCodeIntent');
+      this.toIntent('GetCountryAndPostalCodeIntent');
 
     },
 
@@ -73,6 +73,9 @@ app.setHandler({
         var response = await request(requestOptions);
 
         var officials = jsonparser.parse(response);
+
+        this.tell("To start, the current president is " + officials.president.name + " of the " + officials.president.party);
+
 
 
       } catch(error) {
