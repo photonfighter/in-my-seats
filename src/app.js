@@ -34,20 +34,73 @@ app.use(
 app.setHandler({
      LAUNCH() {
 
-      this.tell("Hello! I am here to help you get to know your representatives. You can choose between president, senators, house representative, or governor.");
+this.tell("Hello! I am here to help you get to know your representatives. You can choose between president, senators, house representative, or governor.");
 
-      this.toIntent('GetCountryAndPostalCodeIntent');
+this.toIntent('GetCountryAndPostalCodeIntent');
 
     },
 
     GetDesiredRepresentativeIntent() {
-      this.ask("Which would you like me to look up for you?");
+      this.followUpState('RepOption').ask("Which would you like me to look up for you?", "Which representative would you like to know more about?");
+    },
+
+    RepOption: {
+      // give info on President
+      PresidentIntent() {
+        let name = jsonparser.officials.president.name;
+        let address = jsonparser.officials.president.address;
+        let phone = jsonparser.officials.president.phone;
+        let party = jsonparser.officials.president.party;
+        this.tell('The president is ' + name + ". They are a member of the " + party + ". Their address is " + address + ". Their phone number is " + phone);
+      },
+      // give info on Senators
+      SenatorsIntent() {
+        let name = jsonparser.officials.senatorOne.name;
+        let name2 = jsonparser.officials.senatorTwo.name;
+        this.followUpState('SenatorOption').ask('Your senators are ' + name + ' and ' + name2 + '. To hear the info for ' + name + ', say senator one. To hear the info for ' + name2 + ', say senator two.');
+      },
+      // give info on House Rep
+      HouseIntent() {
+        let name = jsonparser.officials.houseRep.name;
+        let address = jsonparser.officials.houseRep.address;
+        let phone = jsonparser.officials.houseRep.phone;
+        let party = jsonparser.officials.houseRep.party;
+        this.tell('The House Representative is ' + name + ". They are a member of the " + party + ". Their address is " + address + ". Their phone number is " + phone);
+      },
+      // give info on Governor
+      HouseIntent() {
+        let name = jsonparser.officials.governor.name;
+        let address = jsonparser.officials.governor.address;
+        let phone = jsonparser.officials.governor.phone;
+        let party = jsonparser.officials.governor.party;
+        this.tell('The governor is ' + name + ". They are a member of the " + party + ". Their address is " + address + ". Their phone number is " + phone);
+      }
+
+    },
+
+    SenatorOption: {
+      // give info for the first listed Senator
+      S1Intent() {
+        let name = jsonparser.officials.senatorOne.name;
+        let address = jsonparser.officials.senatorOne.address;
+        let phone = jsonparser.officials.senatorOne.phone;
+        let party = jsonparser.officials.senatorOne.party;
+        this.tell(name + " is a member of the " + party + ". Their address is " + address + ". Their phone number is " + phone);
+      },
+      // give info for the second listed Senator
+      S2Intent() {
+        let name = jsonparser.officials.senatorTwo.name;
+        let address = jsonparser.officials.senatorTwo.address;
+        let phone = jsonparser.officials.senatorTwo.phone;
+        let party = jsonparser.officials.senatorTwo.party;
+        this.tell(name + " is a member of the " + party + ". Their address is " + address + ". Their phone number is " + phone);
+      }
     },
 
     async PermissionsErrorIntent() {
       await this.$alexaSkill.$user.showAskForCountryAndPostalCodeCard();
       this.tell("You done goofed. Get permission");
-  },
+    },
 
     async GetCountryAndPostalCodeIntent() {
 
@@ -90,6 +143,8 @@ app.setHandler({
 
         }
       }
+
+      this.toIntent('GetDesiredRepresentativeIntent');
     },
 });
 
