@@ -106,7 +106,7 @@ app.setHandler({
     this.tell("You done goofed. Get permission");
   },
 
-  async GetCountryAndPostalCodeIntent() {
+  async GetGoogleAPIResponse() {
 
     try {
       // Gets the user's location from ASK

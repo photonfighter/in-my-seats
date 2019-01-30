@@ -2,7 +2,7 @@
 	"invocation": "in my seats",
 	"intents": [
 		{
-			"name": "GetCountryAndPostalCodeIntent",
+			"name": "GetGoogleAPIResponse",
 			"phrases": [
 				"get my zip"
 			],
